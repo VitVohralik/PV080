@@ -10,21 +10,21 @@ tags: [pv080, index, navigation]
 
 ## Lectures
 
-| # | Lecture | Key Topics |
-|---|---------|-----------|
-| L01 | [[lectures/L01-Symmetric-Encryption\|Symmetric Encryption]] | DES, AES, stream/block ciphers, OTP, Kerckhoffs, PRNG |
-| L02 | [[lectures/L02-Hash-MAC-PublicKey\|Hash, MAC & Public-Key Crypto]] | Hash functions, birthday paradox, HMAC, RSA, digital signatures, hybrid encryption |
-| L03 | [[lectures/L03-PKI-eIDAS-Protocols\|PKI, eIDAS & Protocols]] | X.509, CRL/OCSP, PKI trust models, eIDAS, challenge-response, DH |
-| L04 | [[lectures/L04-TLS-SSH-PostQuantum\|TLS, SSH & Post-Quantum]] | STS, Needham-Schroeder, Kerberos, TLS 1.3, SSH, quantum, ROCA |
-| L05 | [[lectures/L05-IAM-Biometrics\|IAM & Biometrics]] | Authentication factors, biometrics (FAR/FRR/FTE/EER), passwords, RBAC, SAML, OAuth |
-| L06 | [[lectures/L06-Privacy\|Privacy]] | Anonymity, pseudonymity, unlinkability, unobservability, mix networks, TOR, CC privacy |
-| L07 | [[lectures/L07-GDPR-Ethics\|GDPR & Ethics]] | Personal data, controller/processor, processing principles, data subject rights, inference, statistical databases, ethics |
-| L08 | [[lectures/L08-ComputerSecurity-Intro\|Computer Security Intro]] | Security goals (C/I/A+), trusted vs. trustworthy, taxonomy, attacker model, STRIDE |
-| L09 | [[lectures/L09-SecurityPolicy-Risk\|Security Policy & Risk]] | Risk formula, qualitative/quantitative analysis, ALE, Bell-LaPadula, ISMS, BCP, RPO/RTO |
-| L10 | [[lectures/L10-NetworkAttacks-IDS\|Network Attacks & IDS]] | IDS/IPS, detection methods, DDoS, ARP spoofing, vulnerability assessment, CVE |
-| L11 | [[lectures/L11-UsableSecurity\|Usable Security]] | Usability dimensions, 5 principles, habituation, password mental models, secure defaults |
-| L12 | [[lectures/L12-SecureProgramming\|Secure Programming]] | SDL, fuzzing, SAST/DAST, DEP/ASLR/CFI/stack canary, taint analysis, crypto issues |
-| L13 | [[lectures/L13-Standards-CaseStudies\|Standards, Case Studies & Closing]] | ISO/NIST/FIPS, Common Criteria (TOE/PP/ST/EAL), FIPS 140, phishing, social engineering |
+| #   | Lecture                                                                   | Key Topics                                                                                                                |
+| --- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| L01 | [[lectures/L01-Symmetric-Encryption\|Symmetric Encryption]]               | DES, AES, stream/block ciphers, OTP, Kerckhoffs, PRNG                                                                     |
+| L02 | [[lectures/L02-Hash-MAC-PublicKey\|Hash, MAC & Public-Key Crypto]]        | Hash functions, birthday paradox, HMAC, RSA, digital signatures, hybrid encryption                                        |
+| L03 | [[lectures/L03-PKI-eIDAS-Protocols\|PKI, eIDAS & Protocols]]              | X.509, CRL/OCSP, PKI trust models, eIDAS, challenge-response, DH                                                          |
+| L04 | [[lectures/L04-TLS-SSH-PostQuantum\|TLS, SSH & Post-Quantum]]             | STS, Needham-Schroeder, Kerberos, TLS 1.3, SSH, quantum, ROCA                                                             |
+| L05 | [[lectures/L05-IAM-Biometrics\|IAM & Biometrics]]                         | Authentication factors, biometrics (FAR/FRR/FTE/EER), passwords, RBAC, SAML, OAuth                                        |
+| L06 | [[lectures/L06-Privacy\|Privacy]]                                         | Anonymity, pseudonymity, unlinkability, unobservability, mix networks, TOR, CC privacy                                    |
+| L07 | [[lectures/L07-GDPR-Ethics\|GDPR & Ethics]]                               | Personal data, controller/processor, processing principles, data subject rights, inference, statistical databases, ethics |
+| L08 | [[lectures/L08-ComputerSecurity-Intro\|Computer Security Intro]]          | Security goals (C/I/A+), trusted vs. trustworthy, taxonomy, attacker model, STRIDE                                        |
+| L09 | [[lectures/L09-SecurityPolicy-Risk\|Security Policy & Risk]]              | Risk formula, qualitative/quantitative analysis, ALE, Bell-LaPadula, ISMS, BCP, RPO/RTO                                   |
+| L10 | [[lectures/L10-NetworkAttacks-IDS\|Network Attacks & IDS]]                | IDS/IPS, detection methods, DDoS, ARP spoofing, vulnerability assessment, CVE                                             |
+| L11 | [[lectures/L11-UsableSecurity\|Usable Security]]                          | Usability dimensions, 5 principles, habituation, password mental models, secure defaults                                  |
+| L12 | [[lectures/L12-SecureProgramming\|Secure Programming]]                    | SDL, fuzzing, SAST/DAST, DEP/ASLR/CFI/stack canary, taint analysis, crypto issues                                         |
+| L13 | [[lectures/L13-Standards-CaseStudies\|Standards, Case Studies & Closing]] | ISO/NIST/FIPS, Common Criteria (TOE/PP/ST/EAL), FIPS 140, phishing, social engineering                                    |
 
 ---
 

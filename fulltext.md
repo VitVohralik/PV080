@@ -495,332 +495,6 @@ Provide: **integrity + data authentication + non-repudiation** (sender cannot de
 
 ---
 
-# Lecture 11 – Usable Security (Human-Centered Security Design)
-
-> Lecture notes: [[lectures/L11-UsableSecurity|L11]] | Related concepts: [[concepts/Authentication|Authentication]] · [[concepts/Biometrics|Biometrics]]
-
-## Motivational Example: Hawaii Missile Alert (2018)
-
-**What happened:** January 13, 2018 — employee sent real ballistic missile threat alert to all Hawaii residents via SMS. Took **38 minutes** to cancel.
-
-**Cause: Bad warning system UI**
-- Single dropdown with real alerts mixed with drill options (e.g., "DRILL-PACOM (DEMO) STATE ONLY" right next to "PACOM (CDW) - STATE ONLY")
-- No confirmation dialog before sending
-- Difficult to undo: alarm could be turned off but no easy way to transmit custom cancellation message
-
-| | Assessment |
-|--|--|
-| **Good** | Simple one-click solution to quickly issue threat warning; automatic consequences (sirens, SMS) |
-| **Bad** | Messy UI, error-prone, no confirmation dialog, difficult to undo |
-| **Ugly** | Who is to blame? Operator? Developer? Designer? → Symptom of lack of usability |
-
-> **Key takeaway:** Bad usability in safety/security systems has real-world consequences. Don't blame the user — improve the system.
-
----
-
-## 1. Usability & Usable Security
-
-### Usefulness = Utility + Usability (Jakob Nielsen, 1994)
-
-**Usefulness** is composed of:
-- **Utility** — Effectiveness: Does the system do what users need? Does the user succeed?
-- **Usability** — five dimensions:
-
-| Dimension | Question |
-|-----------|----------|
-| **Learnability** | How easy is it for users to succeed the first time? |
-| **Efficiency** | Having learned the system, how quickly can users perform tasks? |
-| **Memorability** | Returning after some time, how easily can users re-establish proficiency? |
-| **Errors** | How many errors do users make? How severe? How easy to recover? |
-| **Satisfaction** | How pleasant is it to use the system? (inherently self-reported) |
-
-**Context matters:** Different tools for different use cases (e.g., VIM vs. general IDE — VIM has steeper learning curve but higher long-term efficiency).
-
-**Security-specific note:** Security is NOT a primary goal for users — nobody says "I'm going to do some security now!" Security should be like a **display case**: protect without obstructing the view/use.
-
-### Usable Security Definition
-
-> **Usable security (human-centered security)** is a multidisciplinary field investigating and improving system security (and privacy) **focusing on human interaction with the system**.
-
-- Uses methods of HCI, psychology, sociology, design
-- Security experts often lack usability skills; usability specialists often lack security skills
-- **Core philosophy: Don't blame the user, improve the system instead!**
-
-### Security vs. Usability vs. Usable Security (padlock example)
-
-| Focus | Example questions |
-|-------|-------------------|
-| **Security** | How sturdy is the lock? How many combinations exist? |
-| **Usability** | How easy are the dials to move/read? Are alphanumeric combos more memorable? |
-| **Usable security** | What happens if you forget the combination? Do people choose more secure codes with alphanumeric dials? Can you change the combination? Can authorities open it? |
-
----
-
-## 2. Usable Security for Regular Users
-
-### Example 1: Password Authentication
-
-**What makes a secure password?**
-- High entropy ("long")
-- Unpredictable
-- Don't reuse
-- Don't write down
-- Change regularly
-
-**Each rule prevents a specific attack:**
-
-| Rule | Attack prevented | Caveat |
-|------|-----------------|--------|
-| Long | Brute-force | — |
-| Unpredictable | Dictionary attack | — |
-| No reuse | Credential stuffing from leaked DBs | OK for low-priority accounts (too many passwords today) |
-| Don't write down | Physical theft | **BUT**: use a password manager instead |
-| Change regularly | Long-term compromise | **BUT**: leads to predictable patterns (higher risk than protection) |
-
-> **Important: Security is a process, not a state** (changes over time).
-
-**Passwords mental models (what users actually think):**
-- Brute-force attacks: generally understood
-- Dictionary attacks: **often NOT part of mental model**
-- Attacks seen as personal ("Why would I be targeted?") — mass automated attacks not understood
-- Password re-use attacks: not understood
-- Adding "!" at the end considered sufficient
-- Leet speak (pa$w0rd) considered secure
-- Birthday considered private if not on Facebook
-
-**Security vs. Usability vs. Usable Security for passwords:**
-- **Security:** "Make it long and unpredictable!" → e.g., `36zFX_Ga*p#Wbo&2uSf`
-- **Usability:** "Make it memorable!" → e.g., `iloveyou`, `123456789`
-- **Usable security 1:** Passphrases — memorable AND secure: `king-had-2-sons-and-gave-1/2-a-princess-to-each`
-- **Usable security 2:** Password managers — secure passwords without memorization
-
-**Passphrases (xkcd 936):**
-- `Tr0ub4dor&3` — ~28 bits entropy, hard to remember ❌
-- `correct horse battery staple` — ~44 bits entropy, easy to remember ✅
-- *Make passwords easy to remember and hard to guess, not vice versa!*
-
-**How to resolve problematic password authentication:**
-1. Train (force) users into security (password requirements UI)
-2. **Change the system** (preferred):
-   - Single-sign-on (fewer authentications)
-   - Auth wallets (centralized to device)
-   - Biometrics (nothing to remember)
-   - Passkeys (user-friendly auth based on asymmetric crypto)
-
-> **Important: Prefer system usability over user training.**
-
-### Detour: Mental Models
-
-> "A mental model is a user's view (correct or otherwise) of how a system works and the consequences of user actions." — Van Oorschot
-
-Mental model includes: What attacks do users think exist? Who do they think the attackers are? What information do they think is private?
-
-### Example 2: Data Integrity
-
-Verifying data fingerprint via an independent channel (banking, server key, PGP key).
-
-**Evolution of fingerprint representation:**
-
-| Generation | Format | Example |
-|------------|--------|---------|
-| **Hex fingerprint** | Raw hex in groups of 4 | `A2A9 ADA8 116C DA25 10F4` |
-| **PGP words** | Hex mapped to pronounceable words | `topmost Istanbul Pluto vagabond treadmill Pacific` |
-| **ASCII image** | Geometric visual representation of SSH key | Random dot pattern in terminal |
-| **Robohash** | Hash → unique robot/avatar image | Easy-to-compare visual fingerprints |
-
-Real examples: Element chat (emoji verification), eObčanka (robot image + transaction ID).
-
-> **Important: You (designers) are not your users — different preferences and mental models.**
-
-### Detour: Habituation
-
-**Habituation** = diminishing the response to a frequently repeated stimulus (informally: ignoring things that repeat often).
-
-- **Consequence:** The original purpose (warning) no longer works; changes can happen unnoticed
-- **Solution:** Avoid unnecessary use; avoid design that leads to habituation
-- Habituation is much faster with **jargon** — ask only what the user can know; use accessible language
-- Designer's responsibility: decide WHEN (not) to show a warning
-
-**Good design against habituation (Czech national ID app):**
-- Notification only **once** per new app with display-read permission (not every time)
-- Dialog buttons require **waiting before clicking** (cannot click-through)
-
-> **Important: Make context-aware decisions.**
-
-### Example 3: AI Security
-
-- Claude in Chrome (beta 2026): Chrome as gateway for AI to act online
-- **Attack vector:** Reading a website with hidden prompt injection to exfiltrate financial data from Gmail via MCP
-- Anthropic's warnings face challenges:
-  - **Habituation** ("Always review" warnings get ignored)
-  - Different mental models between developers and users for prompt injection attacks
-  - Context-specific risks (MCP, connectors)
-
----
-
-## 3. Usable Security for IT Professionals
-
-### The Impact Pyramid
-
-```
-     OS developers          ← few people, HIGHEST impact per person
-   Library developers
-  Software developers
- Administrators/IT support
-      End users             ← most people, lower individual impact
-```
-
-**Usability is even MORE important for IT professionals** — one developer's mistake affects millions of users.
-
-### Areas where IT professionals need usability:
-- Command line interaction (commands, error messages, attention management)
-- File structure & location (logs, config files, certificates)
-- Interfaces (security APIs, cryptographic operations)
-- Documentation (security configuration, cryptographic libraries)
-
-### Example 1: SSH CLI
-
-**First connection — host authenticity warning:**
-- Presents ECDSA key fingerprint (SHA256 and MD5)
-- "Are you sure you want to continue connecting (yes/no)?"
-- After accepting: permanently adds to known hosts; shows last login (security indicator)
-
-**Key questions for usable security:**
-- What is the actual risk? What happens after (not) agreeing?
-- How do you undo adding a known host?
-- Why is last login displayed? (security: detect unauthorized access)
-- How much "unwanted" information is appropriate?
-
-**Host key changed warning** — much more alarming:
-- `WARNING: POSSIBLE DNS SPOOFING DETECTED!`
-- `WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!`
-- Provides specific file/line of offending key
-- Connection refused entirely (no option to bypass easily)
-
-**PuTTY vs SSH CLI comparison:**
-- PuTTY GUI: Yes (add to cache), No (connect once without caching), Cancel (abort) — clearer options
-- SSH CLI: yes/no only — less clear what "no" does
-
-### Example 2: Security API Configuration
-
-**PayPal SDK (early 2012) using libcurl:**
-
-```php
-curl_setopt($ch, CURL_SSL_VERIFYPEER, FALSE)  // disabled cert verification!
-curl_setopt($ch, CURL_SSL_VERIFYHOST, FALSE)  // disabled hostname verification!
-```
-
-> **Important: Have secure defaults.** The default should be the most secure option.
-
-**Fixed on 27th April 2012:**
-```php
-curl_setopt($ch, CURL_SSL_VERIFYPEER, TRUE)
-curl_setopt($ch, CURL_SSL_VERIFYHOST, TRUE)  // ← STILL WRONG!
-```
-
-**The subtle trap:**
-- `CURL_SSL_VERIFYPEER` is **Bool** — TRUE = verify ✅
-- `CURL_SSL_VERIFYHOST` is **Int** (not Bool!):
-  - `0` = no host verification
-  - `1` = debug/partial (nearly no verification)
-  - `2` = proper hostname verification ✅
-- Setting to `TRUE` → evaluates as integer `1` → debug mode, NOT actual verification!
-
----
-
-## 4. Five Principles of Usable Security Design
-
-### Principle 1: You (designers) are not your users
-- Designers and IT professionals are NOT typical end users
-- Preferences are subjective; mental models differ
-- **User testing is crucial** — beware: self-reported data vs. objective measures
-
-### Principle 2: Prefer system usability over user training
-- **Option A:** Train users to behave securely — training costs, variable adherence
-- **Option B (preferred):** Improve system usability — explore usable alternatives; higher dev cost, needs user studies
-- **Ideal:** Combine both; ratio depends on context
-
-### Principle 3: Security is a process, not a state
-- Everything evolves: software, attacks, best practices
-- Keeping status quo (usually) means becoming insecure
-- Specific challenges: user inertia, historical context, organizational politics
-
-### Principle 4: Make context-aware decisions
-- Don't just optimize the warning — consider whether to show it at all
-- Example: Revoked certificates don't issue a warning — they **refuse the connection** entirely
-- It may be more usable (and more secure) to not ask the user at all
-
-### Principle 5: Have secure defaults
-- "The default way should be the most secure way."
-- Security is a secondary goal — help securely but don't obstruct use
-- "Security should be like a display case: protect, not obstruct view"
-
----
-
-## 5. Application Examples (Security UX Analyses)
-
-### MUNI IS Login (muni.islogin.cz)
-- IS MU login redirects to **different domain** (islogin.cz, not muni.cz)
-- **Security reason:** muni.cz has many admins; islogin.cz fully controlled by IS MU; prevents password autofill attacks
-- **Usability concern:** Logging in on a different domain violates usual security guidelines (users taught to check domain)
-- Change almost transparent for end users
-- Worth the trade-off? → Context-aware decision
-
-### MUNI Two-Factor Authentication
-- Two **separate** 2FA systems: IS MU (OTP, app, NIA) vs. MUNI SSO (OTP, hardware key, backup codes)
-- Different options, different usability
-- Root cause: historical development by different teams, different mandates, organizational politics
-- Technological unification would be easy — but politics/history stand in the way
-- **Illustrates:** Security is a process, not a state; organizational context matters
-
-### IS MU Password Change Screen
-- Standard fields: old password, 2× new password, show characters toggle
-- Shows **when** current password was set (security indicator for detecting unauthorized changes)
-- **Pregenerated password dropdown** — nudges users toward secure options; all are short pronounceable passwords (memorability vs. security trade-off)
-- Long textual password guidelines at bottom (with examples and reasoning)
-
-### Keybase Sign-Out Screen
-- Before signing out, asks: "Do you know your password?"
-- Offers "Test password" (blue/focused button) and "Just sign out" link
-- **Rationale:** Chat apps are usually permanently logged in; users may forget rarely-used password
-- **Usability concern:** "Test password" screen is unusual; the focused blue button should reflect what users most likely want to do — here it reflects what the developer wants
-
----
-
-## Algorithm Speed Comparison
-
-| Algorithm | Type | Speed |
-|-----------|------|-------|
-| **AES-128 CBC** | Symmetric encrypt | ~53–76 MB/s |
-| **HMAC-SHA256** | MAC | ~50 MB/s |
-| **RSA-2048 encrypt** | Asymmetric | ~7–10 MB/s |
-| **RSA-2048 decrypt** | Asymmetric | ~0.5–3.4 MB/s |
-| **ECDSA sign** | Asymmetric | faster than RSA |
-
-Symmetric operations are **orders of magnitude faster** than asymmetric — hence hybrid encryption.
-
-### Cost of Brute Force
-
-| Key length | Estimated cost to break |
-|------------|------------------------|
-| 56 bits (DES) | Trivial — hours |
-| 80 bits | ~$10B (feasible for nation-states) |
-| 128 bits | Infeasible with current technology |
-
----
-
-## Case Study: KeeLoq
-
-- Proprietary cipher used in **car remote entry systems** (Microchip Technology)
-- **Algorithm kept secret** (violated Kerckhoffs' principle)
-- 2008: completely broken — full key recovery possible
-- Attacker could **clone car remotes** by observing 64 messages
-- Lesson: **Proprietary ≠ Secure; security through obscurity fails**
-
----
-
----
-
 # Lecture 3 – Digital Signatures, PKI, eIDAS & Cryptographic Protocols
 
 > Lecture notes: [[lectures/L03-PKI-eIDAS-Protocols|L03]] | Related concepts: [[concepts/Digital-Signatures|Digital Signatures]] · [[concepts/PKI-Certificates|PKI & Certificates]] · [[concepts/Authentication|Authentication]]
@@ -2309,7 +1983,7 @@ Lawful processing requires: **purpose** + **scope** + **legal basis**.
 
 ---
 
-## Lecture 8 – Computer Security: Introduction
+# Lecture 8 – Computer Security: Introduction
 
 > Lecture notes: [[lectures/L08-ComputerSecurity-Intro|L08]] | Related concepts: [[concepts/Risk-Assessment|Risk Assessment]] · [[concepts/IDS-IPS|IDS/IPS]]
 
@@ -2522,7 +2196,7 @@ Keyword-based approach to stimulate structured threat thinking:
 
 ---
 
-## Lecture 9 – Security Policy, Risk Assessment, Business Security Operations
+# Lecture 9 – Security Policy, Risk Assessment, Business Security Operations
 
 > Lecture notes: [[lectures/L09-SecurityPolicy-Risk|L09]] | Related concepts: [[concepts/Risk-Assessment|Risk Assessment]]
 
@@ -2936,6 +2610,332 @@ Risk levels 1–5 (V.LOW to V.HIGH):
 **Mitigation:**
 - Use **static ARP entries**
 - **Switch port security** (Dynamic ARP Inspection)
+
+---
+
+---
+
+# Lecture 11 – Usable Security (Human-Centered Security Design)
+
+> Lecture notes: [[lectures/L11-UsableSecurity|L11]] | Related concepts: [[concepts/Authentication|Authentication]] · [[concepts/Biometrics|Biometrics]]
+
+## Motivational Example: Hawaii Missile Alert (2018)
+
+**What happened:** January 13, 2018 — employee sent real ballistic missile threat alert to all Hawaii residents via SMS. Took **38 minutes** to cancel.
+
+**Cause: Bad warning system UI**
+- Single dropdown with real alerts mixed with drill options (e.g., "DRILL-PACOM (DEMO) STATE ONLY" right next to "PACOM (CDW) - STATE ONLY")
+- No confirmation dialog before sending
+- Difficult to undo: alarm could be turned off but no easy way to transmit custom cancellation message
+
+| | Assessment |
+|--|--|
+| **Good** | Simple one-click solution to quickly issue threat warning; automatic consequences (sirens, SMS) |
+| **Bad** | Messy UI, error-prone, no confirmation dialog, difficult to undo |
+| **Ugly** | Who is to blame? Operator? Developer? Designer? → Symptom of lack of usability |
+
+> **Key takeaway:** Bad usability in safety/security systems has real-world consequences. Don't blame the user — improve the system.
+
+---
+
+## 1. Usability & Usable Security
+
+### Usefulness = Utility + Usability (Jakob Nielsen, 1994)
+
+**Usefulness** is composed of:
+- **Utility** — Effectiveness: Does the system do what users need? Does the user succeed?
+- **Usability** — five dimensions:
+
+| Dimension | Question |
+|-----------|----------|
+| **Learnability** | How easy is it for users to succeed the first time? |
+| **Efficiency** | Having learned the system, how quickly can users perform tasks? |
+| **Memorability** | Returning after some time, how easily can users re-establish proficiency? |
+| **Errors** | How many errors do users make? How severe? How easy to recover? |
+| **Satisfaction** | How pleasant is it to use the system? (inherently self-reported) |
+
+**Context matters:** Different tools for different use cases (e.g., VIM vs. general IDE — VIM has steeper learning curve but higher long-term efficiency).
+
+**Security-specific note:** Security is NOT a primary goal for users — nobody says "I'm going to do some security now!" Security should be like a **display case**: protect without obstructing the view/use.
+
+### Usable Security Definition
+
+> **Usable security (human-centered security)** is a multidisciplinary field investigating and improving system security (and privacy) **focusing on human interaction with the system**.
+
+- Uses methods of HCI, psychology, sociology, design
+- Security experts often lack usability skills; usability specialists often lack security skills
+- **Core philosophy: Don't blame the user, improve the system instead!**
+
+### Security vs. Usability vs. Usable Security (padlock example)
+
+| Focus | Example questions |
+|-------|-------------------|
+| **Security** | How sturdy is the lock? How many combinations exist? |
+| **Usability** | How easy are the dials to move/read? Are alphanumeric combos more memorable? |
+| **Usable security** | What happens if you forget the combination? Do people choose more secure codes with alphanumeric dials? Can you change the combination? Can authorities open it? |
+
+---
+
+## 2. Usable Security for Regular Users
+
+### Example 1: Password Authentication
+
+**What makes a secure password?**
+- High entropy ("long")
+- Unpredictable
+- Don't reuse
+- Don't write down
+- Change regularly
+
+**Each rule prevents a specific attack:**
+
+| Rule | Attack prevented | Caveat |
+|------|-----------------|--------|
+| Long | Brute-force | — |
+| Unpredictable | Dictionary attack | — |
+| No reuse | Credential stuffing from leaked DBs | OK for low-priority accounts (too many passwords today) |
+| Don't write down | Physical theft | **BUT**: use a password manager instead |
+| Change regularly | Long-term compromise | **BUT**: leads to predictable patterns (higher risk than protection) |
+
+> **Important: Security is a process, not a state** (changes over time).
+
+**Passwords mental models (what users actually think):**
+- Brute-force attacks: generally understood
+- Dictionary attacks: **often NOT part of mental model**
+- Attacks seen as personal ("Why would I be targeted?") — mass automated attacks not understood
+- Password re-use attacks: not understood
+- Adding "!" at the end considered sufficient
+- Leet speak (pa$w0rd) considered secure
+- Birthday considered private if not on Facebook
+
+**Security vs. Usability vs. Usable Security for passwords:**
+- **Security:** "Make it long and unpredictable!" → e.g., `36zFX_Ga*p#Wbo&2uSf`
+- **Usability:** "Make it memorable!" → e.g., `iloveyou`, `123456789`
+- **Usable security 1:** Passphrases — memorable AND secure: `king-had-2-sons-and-gave-1/2-a-princess-to-each`
+- **Usable security 2:** Password managers — secure passwords without memorization
+
+**Passphrases (xkcd 936):**
+- `Tr0ub4dor&3` — ~28 bits entropy, hard to remember ❌
+- `correct horse battery staple` — ~44 bits entropy, easy to remember ✅
+- *Make passwords easy to remember and hard to guess, not vice versa!*
+
+**How to resolve problematic password authentication:**
+1. Train (force) users into security (password requirements UI)
+2. **Change the system** (preferred):
+   - Single-sign-on (fewer authentications)
+   - Auth wallets (centralized to device)
+   - Biometrics (nothing to remember)
+   - Passkeys (user-friendly auth based on asymmetric crypto)
+
+> **Important: Prefer system usability over user training.**
+
+### Detour: Mental Models
+
+> "A mental model is a user's view (correct or otherwise) of how a system works and the consequences of user actions." — Van Oorschot
+
+Mental model includes: What attacks do users think exist? Who do they think the attackers are? What information do they think is private?
+
+### Example 2: Data Integrity
+
+Verifying data fingerprint via an independent channel (banking, server key, PGP key).
+
+**Evolution of fingerprint representation:**
+
+| Generation | Format | Example |
+|------------|--------|---------|
+| **Hex fingerprint** | Raw hex in groups of 4 | `A2A9 ADA8 116C DA25 10F4` |
+| **PGP words** | Hex mapped to pronounceable words | `topmost Istanbul Pluto vagabond treadmill Pacific` |
+| **ASCII image** | Geometric visual representation of SSH key | Random dot pattern in terminal |
+| **Robohash** | Hash → unique robot/avatar image | Easy-to-compare visual fingerprints |
+
+Real examples: Element chat (emoji verification), eObčanka (robot image + transaction ID).
+
+> **Important: You (designers) are not your users — different preferences and mental models.**
+
+### Detour: Habituation
+
+**Habituation** = diminishing the response to a frequently repeated stimulus (informally: ignoring things that repeat often).
+
+- **Consequence:** The original purpose (warning) no longer works; changes can happen unnoticed
+- **Solution:** Avoid unnecessary use; avoid design that leads to habituation
+- Habituation is much faster with **jargon** — ask only what the user can know; use accessible language
+- Designer's responsibility: decide WHEN (not) to show a warning
+
+**Good design against habituation (Czech national ID app):**
+- Notification only **once** per new app with display-read permission (not every time)
+- Dialog buttons require **waiting before clicking** (cannot click-through)
+
+> **Important: Make context-aware decisions.**
+
+### Example 3: AI Security
+
+- Claude in Chrome (beta 2026): Chrome as gateway for AI to act online
+- **Attack vector:** Reading a website with hidden prompt injection to exfiltrate financial data from Gmail via MCP
+- Anthropic's warnings face challenges:
+  - **Habituation** ("Always review" warnings get ignored)
+  - Different mental models between developers and users for prompt injection attacks
+  - Context-specific risks (MCP, connectors)
+
+---
+
+## 3. Usable Security for IT Professionals
+
+### The Impact Pyramid
+
+```
+     OS developers          ← few people, HIGHEST impact per person
+   Library developers
+  Software developers
+ Administrators/IT support
+      End users             ← most people, lower individual impact
+```
+
+**Usability is even MORE important for IT professionals** — one developer's mistake affects millions of users.
+
+### Areas where IT professionals need usability:
+- Command line interaction (commands, error messages, attention management)
+- File structure & location (logs, config files, certificates)
+- Interfaces (security APIs, cryptographic operations)
+- Documentation (security configuration, cryptographic libraries)
+
+### Example 1: SSH CLI
+
+**First connection — host authenticity warning:**
+- Presents ECDSA key fingerprint (SHA256 and MD5)
+- "Are you sure you want to continue connecting (yes/no)?"
+- After accepting: permanently adds to known hosts; shows last login (security indicator)
+
+**Key questions for usable security:**
+- What is the actual risk? What happens after (not) agreeing?
+- How do you undo adding a known host?
+- Why is last login displayed? (security: detect unauthorized access)
+- How much "unwanted" information is appropriate?
+
+**Host key changed warning** — much more alarming:
+- `WARNING: POSSIBLE DNS SPOOFING DETECTED!`
+- `WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!`
+- Provides specific file/line of offending key
+- Connection refused entirely (no option to bypass easily)
+
+**PuTTY vs SSH CLI comparison:**
+- PuTTY GUI: Yes (add to cache), No (connect once without caching), Cancel (abort) — clearer options
+- SSH CLI: yes/no only — less clear what "no" does
+
+### Example 2: Security API Configuration
+
+**PayPal SDK (early 2012) using libcurl:**
+
+```php
+curl_setopt($ch, CURL_SSL_VERIFYPEER, FALSE)  // disabled cert verification!
+curl_setopt($ch, CURL_SSL_VERIFYHOST, FALSE)  // disabled hostname verification!
+```
+
+> **Important: Have secure defaults.** The default should be the most secure option.
+
+**Fixed on 27th April 2012:**
+```php
+curl_setopt($ch, CURL_SSL_VERIFYPEER, TRUE)
+curl_setopt($ch, CURL_SSL_VERIFYHOST, TRUE)  // ← STILL WRONG!
+```
+
+**The subtle trap:**
+- `CURL_SSL_VERIFYPEER` is **Bool** — TRUE = verify ✅
+- `CURL_SSL_VERIFYHOST` is **Int** (not Bool!):
+  - `0` = no host verification
+  - `1` = debug/partial (nearly no verification)
+  - `2` = proper hostname verification ✅
+- Setting to `TRUE` → evaluates as integer `1` → debug mode, NOT actual verification!
+
+---
+
+## 4. Five Principles of Usable Security Design
+
+### Principle 1: You (designers) are not your users
+- Designers and IT professionals are NOT typical end users
+- Preferences are subjective; mental models differ
+- **User testing is crucial** — beware: self-reported data vs. objective measures
+
+### Principle 2: Prefer system usability over user training
+- **Option A:** Train users to behave securely — training costs, variable adherence
+- **Option B (preferred):** Improve system usability — explore usable alternatives; higher dev cost, needs user studies
+- **Ideal:** Combine both; ratio depends on context
+
+### Principle 3: Security is a process, not a state
+- Everything evolves: software, attacks, best practices
+- Keeping status quo (usually) means becoming insecure
+- Specific challenges: user inertia, historical context, organizational politics
+
+### Principle 4: Make context-aware decisions
+- Don't just optimize the warning — consider whether to show it at all
+- Example: Revoked certificates don't issue a warning — they **refuse the connection** entirely
+- It may be more usable (and more secure) to not ask the user at all
+
+### Principle 5: Have secure defaults
+- "The default way should be the most secure way."
+- Security is a secondary goal — help securely but don't obstruct use
+- "Security should be like a display case: protect, not obstruct view"
+
+---
+
+## 5. Application Examples (Security UX Analyses)
+
+### MUNI IS Login (muni.islogin.cz)
+- IS MU login redirects to **different domain** (islogin.cz, not muni.cz)
+- **Security reason:** muni.cz has many admins; islogin.cz fully controlled by IS MU; prevents password autofill attacks
+- **Usability concern:** Logging in on a different domain violates usual security guidelines (users taught to check domain)
+- Change almost transparent for end users
+- Worth the trade-off? → Context-aware decision
+
+### MUNI Two-Factor Authentication
+- Two **separate** 2FA systems: IS MU (OTP, app, NIA) vs. MUNI SSO (OTP, hardware key, backup codes)
+- Different options, different usability
+- Root cause: historical development by different teams, different mandates, organizational politics
+- Technological unification would be easy — but politics/history stand in the way
+- **Illustrates:** Security is a process, not a state; organizational context matters
+
+### IS MU Password Change Screen
+- Standard fields: old password, 2× new password, show characters toggle
+- Shows **when** current password was set (security indicator for detecting unauthorized changes)
+- **Pregenerated password dropdown** — nudges users toward secure options; all are short pronounceable passwords (memorability vs. security trade-off)
+- Long textual password guidelines at bottom (with examples and reasoning)
+
+### Keybase Sign-Out Screen
+- Before signing out, asks: "Do you know your password?"
+- Offers "Test password" (blue/focused button) and "Just sign out" link
+- **Rationale:** Chat apps are usually permanently logged in; users may forget rarely-used password
+- **Usability concern:** "Test password" screen is unusual; the focused blue button should reflect what users most likely want to do — here it reflects what the developer wants
+
+---
+
+## Algorithm Speed Comparison
+
+| Algorithm | Type | Speed |
+|-----------|------|-------|
+| **AES-128 CBC** | Symmetric encrypt | ~53–76 MB/s |
+| **HMAC-SHA256** | MAC | ~50 MB/s |
+| **RSA-2048 encrypt** | Asymmetric | ~7–10 MB/s |
+| **RSA-2048 decrypt** | Asymmetric | ~0.5–3.4 MB/s |
+| **ECDSA sign** | Asymmetric | faster than RSA |
+
+Symmetric operations are **orders of magnitude faster** than asymmetric — hence hybrid encryption.
+
+### Cost of Brute Force
+
+| Key length | Estimated cost to break |
+|------------|------------------------|
+| 56 bits (DES) | Trivial — hours |
+| 80 bits | ~$10B (feasible for nation-states) |
+| 128 bits | Infeasible with current technology |
+
+---
+
+## Case Study: KeeLoq
+
+- Proprietary cipher used in **car remote entry systems** (Microchip Technology)
+- **Algorithm kept secret** (violated Kerckhoffs' principle)
+- 2008: completely broken — full key recovery possible
+- Attacker could **clone car remotes** by observing 64 messages
+- Lesson: **Proprietary ≠ Secure; security through obscurity fails**
 
 ---
 
