@@ -1,4 +1,4 @@
-nepis# PV080 – Information Security and Cryptography
+# PV080 – Information Security and Cryptography
 
 AI-generated notes from lecture slides. **No guarantee of correctness** — use at your own risk.
 
