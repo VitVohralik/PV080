@@ -83,6 +83,7 @@ Security policy aims to **minimize (manage) risks** by specifying:
 ## ISMS — ISO/IEC 27000
 
 **PDCA Cycle:**
+
 | Phase | Action |
 |-------|--------|
 | **Plan** | Establish ISMS policy, objectives, processes |
