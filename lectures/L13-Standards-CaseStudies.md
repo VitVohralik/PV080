@@ -5,7 +5,7 @@ lecture: 13
 
 # L13 – Security Standards, Case Studies & Closing Notes
 
-> Full notes: [[../fulltext|fulltext]]  
+> Full notes: [[Fulltext|Fulltext]]  
 > Related concepts: [[../concepts/Risk-Assessment|Risk Assessment]] · [[../concepts/PKI-Certificates|PKI & Certificates]] · [[../concepts/Authentication|Authentication]]
 
 ---

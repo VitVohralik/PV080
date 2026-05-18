@@ -5,7 +5,7 @@ lecture: 2
 
 # L02 – Hash, MAC & Public-Key Crypto
 
-> Full notes: [[../fulltext|fulltext]]
+> Full notes: [[Fulltext|Fulltext]]
 
 ## Block Cipher Modes of Operation
 

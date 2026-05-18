@@ -4,7 +4,7 @@ tags: [pv080, index, navigation]
 
 # PV080 – Information Security & Cryptography — Index
 
-> Full original notes: [[fulltext|fulltext.md]]
+> Full original notes: [[Fulltext|fulltext.md]]
 
 ---
 

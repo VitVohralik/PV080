@@ -5,7 +5,7 @@ lecture: 8
 
 # L08 – Computer Security: Introduction
 
-> Full notes: [[../fulltext|fulltext]]
+> Full notes: [[Fulltext|Fulltext]]
 
 ## Terminology
 

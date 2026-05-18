@@ -5,7 +5,7 @@ lecture: 6
 
 # L06 – Privacy Introduction
 
-> Full notes: [[../fulltext|fulltext]]
+> Full notes: [[Fulltext|Fulltext]]
 
 ## What is Privacy?
 

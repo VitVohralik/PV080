@@ -5,7 +5,7 @@ lecture: 7
 
 # L07 – Personal Data Protection, GDPR & Ethics
 
-> Full notes: [[../fulltext|fulltext]]
+> Full notes: [[Fulltext|Fulltext]]
 
 ## Privacy vs. Personal Data Protection
 

@@ -5,7 +5,7 @@ lecture: 11
 
 # L11 – Usable Security
 
-> Full notes: [[../fulltext|fulltext]]
+> Full notes: [[Fulltext|Fulltext]]
 
 ## Motivational Example: Hawaii Missile Alert (2018)
 

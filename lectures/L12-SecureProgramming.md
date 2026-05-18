@@ -5,7 +5,7 @@ lecture: 12
 
 # L12 – Programming Secure Software
 
-> Full notes: [[../fulltext|fulltext]]
+> Full notes: [[Fulltext|Fulltext]]
 
 ## Core Mantras
 

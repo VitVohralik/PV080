@@ -5,7 +5,7 @@ lecture: 10
 
 # L10 – Network Attacks, IDS & Vulnerability Assessment
 
-> Full notes: [[../fulltext|fulltext]]
+> Full notes: [[Fulltext|Fulltext]]
 
 ## Network Monitoring
 

@@ -5,7 +5,7 @@ lecture: 4
 
 # L04 – TLS, SSH & Post-Quantum Crypto
 
-> Full notes: [[../fulltext|fulltext]]
+> Full notes: [[Fulltext|Fulltext]]
 
 ## Station-to-Station (STS) Protocol
 

@@ -10,3 +10,5 @@ The notes are structured as an Obsidian vault with links between lectures and co
 
 **FI MUNI Drill** — great for testing yourself before the exam:
 **[fi-muni-drill.kabell.sk/question/PV080/1](https://fi-muni-drill.kabell.sk/question/PV080/1)**
+
+Questions in `Otazky.md` are from the dataset at [github.com/MarekBodinger/fi-muni-drill](https://github.com/MarekBodinger/fi-muni-drill).

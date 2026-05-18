@@ -5,7 +5,7 @@ lecture: 5
 
 # L05 – Identity and Access Management
 
-> Full notes: [[../fulltext|fulltext]]
+> Full notes: [[Fulltext|Fulltext]]
 
 ## Identity
 

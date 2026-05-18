@@ -5,7 +5,7 @@ lecture: 1
 
 # L01 – Symmetric Encryption
 
-> Full notes: [[../fulltext|fulltext]]
+> Full notes: [[Fulltext|Fulltext]]
 
 ## Core Terminology
 

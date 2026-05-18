@@ -5,7 +5,7 @@ lecture: 9
 
 # L09 – Security Policy, Risk Assessment & Business Security
 
-> Full notes: [[../fulltext|fulltext]]
+> Full notes: [[Fulltext|Fulltext]]
 
 ## Security as a Cyclic Process
 

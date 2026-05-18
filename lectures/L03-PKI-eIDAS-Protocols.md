@@ -5,7 +5,7 @@ lecture: 3
 
 # L03 – PKI, eIDAS & Cryptographic Protocols
 
-> Full notes: [[../fulltext|fulltext]]
+> Full notes: [[Fulltext|Fulltext]]
 
 ## Digital Signatures — Recap
 
